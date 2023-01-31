@@ -166,7 +166,7 @@ export const AddAddressComp = () => {
             placeholder="Alamat"
             mb={"10px"}
             width="370px"
-            border="2px"
+            border="1px"
             borderColor="#285430"
           ></Input>
         </FormControl>
@@ -176,7 +176,7 @@ export const AddAddressComp = () => {
             ref={inputDistrict}
             mb={"10px"}
             width="370px"
-            border="2px"
+            border="1px"
             borderColor="#285430"
           ></Input>
         </FormControl>
@@ -185,7 +185,7 @@ export const AddAddressComp = () => {
           <Select
             mb={"10px"}
             width="370px"
-            border="2px"
+            border="1px"
             borderColor="#285430"
             value={province?.rajaongkir?.results?.province_id}
             placeholder="Select Province"
@@ -199,7 +199,7 @@ export const AddAddressComp = () => {
           <Select
             mb={"10px"}
             width="370px"
-            border="2px"
+            border="1px"
             borderColor="#285430"
             value={city?.rajaongkir?.results?.city_id}
             placeholder="Select City"
@@ -214,7 +214,7 @@ export const AddAddressComp = () => {
           <Select
             mb={"10px"}
             width="370px"
-            border="2px"
+            border="1px"
             borderColor="#285430"
             placeholder="Select Postal Code"
             onChange={postalHandler}
@@ -227,7 +227,7 @@ export const AddAddressComp = () => {
           <Textarea
             mb={"10px"}
             width="370px"
-            border="2px"
+            border="1px"
             borderColor="#285430"
             ref={inputDetail}
             placeholder="e.g. Blok/Lantai"
@@ -245,7 +245,7 @@ export const AddAddressComp = () => {
               placeholder="Name"
               mb={"10px"}
               width="370px"
-              border="2px"
+              border="1px"
               borderColor="#285430"
               _placeholder={{ color: "#5F8D4E" }}
             ></Input>
@@ -258,7 +258,7 @@ export const AddAddressComp = () => {
             placeholder="08xxx"
             mb={"10px"}
             width="370px"
-            border="2px"
+            border="1px"
             borderColor="#285430"
             _placeholder={{ color: "#5F8D4E" }}
           ></Input>
@@ -270,25 +270,26 @@ export const AddAddressComp = () => {
             placeholder="yourname@example.com"
             mb={"10px"}
             width="370px"
-            border="2px"
+            border="1px"
             borderColor="#285430"
             _placeholder={{ color: "#5F8D4E" }}
           ></Input>
         </FormControl>
-          </Stack>
-        <Center>
-          <Button
-            onClick={onCreate}
-            mt={"2vw"}
-            bgColor={"#A4BE7B"}
-            borderColor="#285430"
-            border="2px"
-            fontSize="18px"
-            color="gray.800"
-          >
-            Add Address
-          </Button>
-        </Center>
+      </Stack>
+      <Center>
+        <Button
+          onClick={onCreate}
+          mt={"15px"}
+          bgColor={"#A4BE7B"}
+          borderColor="#285430"
+          border="2px"
+          fontSize="18px"
+          color="gray.800"
+          width={"370px"}
+        >
+          Add Address
+        </Button>
+      </Center>
     </div>
   );
 };

@@ -98,22 +98,29 @@ export const NavbarComp = () => {
 
   return (
     <div>
-        <Center>
-
-      <Badge zIndex={2} borderRadius="2xl" mb={"10px"} 
-      ml="100px"   bg="#FE0013"
-      color={"black"}
-      >
+      <Center>
+        <Badge
+          zIndex={2}
+          borderRadius="2xl"
+          mb={"10px"}
+          ml="100px"
+          bg="#FE0013"
+          color={"black"}
+        >
           {data?.length}
         </Badge>
-        <Badge zIndex={2} borderRadius="2xl" mb={"10px"} 
-        ml="50px"   bg="#FE0013"
-        color={"black"}
+        <Badge
+          zIndex={2}
+          borderRadius="2xl"
+          mb={"10px"}
+          ml="50px"
+          bg="#FE0013"
+          color={"black"}
         >
           {data2?.length}
         </Badge>
-        </Center>
-        <Center>
+      </Center>
+      <Center>
         <Flex
           w={[300, 350, 390]}
           h="70px"
@@ -121,7 +128,7 @@ export const NavbarComp = () => {
           color="gray.800"
           dropShadow="2xl"
           position="fixed"
-          >
+        >
           <Flex
             justifyContent="space-evenly"
             align="center"

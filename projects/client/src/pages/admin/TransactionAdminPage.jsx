@@ -1,5 +1,5 @@
 import { Grid, GridItem } from "@chakra-ui/react";
-import { SidebarComp } from "../../components/admin/SidebarComp";
+import { SidebarBranchComp } from "../../components/admin/SidebarBranchComp";
 import { TransactionComp } from "../../components/admin/TransactionComp";
 
 export const TransactionAdminPage = () => {
@@ -18,7 +18,7 @@ export const TransactionAdminPage = () => {
         bgColor={"white"}
       >
         <GridItem>
-          <SidebarComp />
+          <SidebarBranchComp />
         </GridItem>
         <GridItem>
           <TransactionComp />

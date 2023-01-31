@@ -50,7 +50,7 @@ export const ProductComp = () => {
   const [searchProduct, setSearchProduct] = useState("");
   const [totalPage, setTotalPage] = useState(0);
   const [state, setState] = useState(0);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const getProduct = async () => {
@@ -144,10 +144,10 @@ export const ProductComp = () => {
     },
   });
 
-  const toAddProduct = () => {
-    navigate("/adminPage/productAdminPage/addProduct");
+  const toAddProductCategory = () => {
+    navigate("/adminPage/productAdminPage/addProductCategory");
   };
-  
+
   return (
     <div>
       <Tabs isFitted variant="enclosed">
@@ -285,7 +285,7 @@ export const ProductComp = () => {
                   width={"100%"}
                   justifyContent="center"
                   size="md"
-                  // onClick={ toAddProduct()}
+                  onClick={toAddProductCategory}
                 >
                   Add Product
                 </Button>

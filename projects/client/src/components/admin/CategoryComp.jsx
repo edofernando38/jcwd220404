@@ -15,10 +15,8 @@ import {
   InputGroup,
   InputRightElement,
   Select,
-  Tab,
   Table,
   TableContainer,
-  TabList,
   TabPanel,
   TabPanels,
   Tabs,
@@ -33,6 +31,7 @@ import {
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { syncCategory } from "../../redux/categorySlice";
 import { BsFilterLeft } from "react-icons/bs";
 import { BiReset, BiSearchAlt } from "react-icons/bi";
@@ -51,6 +50,7 @@ export const CategoryComp = () => {
   const [searchCategory, setSearchCategory] = useState("");
   const [totalPage, setTotalPage] = useState(0);
   const [state, setState] = useState(0);
+  const navigate = useNavigate()
   const dispatch = useDispatch();
 
   const getCategory = async () => {
@@ -143,6 +143,10 @@ export const CategoryComp = () => {
   useEffect(() => {
     fetchSort();
   }, []);
+
+  const toAddProductCategory = () => {
+    navigate("/adminPage/productAdminPage/addProductCategory");
+  };
 
   return (
     <div>
@@ -280,8 +284,8 @@ export const CategoryComp = () => {
                   color="gray.800"
                   width={"100%"}
                   justifyContent="center"
-                  // onClick={ toAddProduct()}
                   size="md"
+                  onClick={toAddProductCategory}
                 >
                   Add Category
                 </Button>

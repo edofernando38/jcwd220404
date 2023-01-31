@@ -29,7 +29,7 @@ export const ListAddressPage = () => {
   const { id } = useSelector((state) => state.userSlice.value);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const params = useParams()
+  const params = useParams();
 
   const getData = async () => {
     try {
@@ -110,18 +110,16 @@ export const ListAddressPage = () => {
             {data?.map((item) => {
               return (
                 <Box
-                  ml="8px"
-                  mr="8px"
-                  mt="8px"
-                  p="4"
-                  border={"2px"}
+                  margin={"10px"}
+                  p="3"
+                  border={"1px"}
                   borderColor={"#285430"}
                   borderRadius="xl"
                 >
                   <Flex justifyContent={"space-between"}>
                     <Text color={"#285430"}>{item.receiverName}</Text>
                     <Text color={"#285430"}>{item.receiverPhone}</Text>
-                    <Menu theme= {({ direction:"rtl" })}>
+                    <Menu theme={{ direction: "rtl" }}>
                       <MenuButton
                         color={"#285430"}
                         as={IconButton}
@@ -168,12 +166,13 @@ export const ListAddressPage = () => {
             <Center>
               <Button
                 onClick={toAddAddress}
-                mt={"2vw"}
-            bgColor={"#A4BE7B"}
-            borderColor="#285430"
-            border="2px"
-            fontSize="18px"
-            color="gray.800"
+                mt={"15px"}
+                    bgColor={"#A4BE7B"}
+                    borderColor="#285430"
+                    border="2px"
+                    fontSize="18px"
+                    color="gray.800"
+                    width={"370px"}
               >
                 Tambah Alamat
               </Button>

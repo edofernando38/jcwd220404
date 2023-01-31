@@ -1,14 +1,8 @@
 import {
     Box,
-    Button,
-    Card,
     Center,
-    Checkbox,
     Flex,
-    Grid,
-    GridItem,
     HStack,
-    Progress,
     Stack,
     Text,
   } from "@chakra-ui/react";
@@ -62,12 +56,15 @@ import {
             <Center>
               <Box
                 w={"350px"}
+                mb="10px"
                 boxShadow={"md"}
+                border="1px"
                 borderRadius="10px"
+                borderColor={"#285430"}
                 as={Link}
                 to={`/transaction/${item.id}`}
               >
-                <Stack ml={"10px"} spacing={5} mb={2}>
+                <Stack textColor={"#285430"} ml={"10px"} spacing={5} mb={2}>
                   <Box>
                     <Text align={"left"} mt={"10px"}>
                       Order No. {item.id_order}

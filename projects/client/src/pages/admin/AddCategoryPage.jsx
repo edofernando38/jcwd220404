@@ -1,11 +1,11 @@
 import { Grid, GridItem } from "@chakra-ui/react";
-import { SidebarBranchComp } from "../../components/admin/SidebarBranchComp";
-import { InventoryAdminComp } from "../../components/admin/InventoryAdminComp";
+import { AddCategoryComp } from "../../components/admin/AddCategoryComp";
+import { SidebarComp } from "../../components/admin/SidebarComp";
 
-export const InventoryAdminPage = () => {
+export const AddCategoryPage = () => {
   return (
     <div>
-     <Grid
+      <Grid
         templateAreas={`"header header"
                   "nav main"
                   "nav footer"`}
@@ -18,10 +18,10 @@ export const InventoryAdminPage = () => {
         bgColor={"white"}
       >
         <GridItem>
-          <SidebarBranchComp />
+          <SidebarComp />
         </GridItem>
         <GridItem>
-          <InventoryAdminComp />
+          <AddCategoryComp />
         </GridItem>
       </Grid>
     </div>

@@ -42,7 +42,7 @@ export const PopoutCheckoutComp = ({ props }) => {
         <Flex
           as={"b"}
           textColor="#285430"
-          border={"2px"}
+          border={"1px"}
           borderRadius="md"
           borderColor={"#285430"}
           justifyContent="space-evenly"

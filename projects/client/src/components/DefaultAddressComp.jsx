@@ -36,20 +36,20 @@ export const DefaultAddressComp = () => {
   return (
     <div>
       <Flex 
-      mt="80px"
+      mt="90px"
       >
         <Stack>
           <Button
             _placeholder={{ color: "#5F8D4E" }}
-            w={"390px"}
+            w={"370px"}
             backgroundColor="white"
             textColor="#285430"
-            border="2px"
+            border="1px"
             borderColor={"#285430"}
             borderRadius="xl"
           >
             <Text color={"#285430"}>
-            Sent to:: {data?.city}, {data?.province}
+            Area : {data?.city}, {data?.province}
             </Text>
           </Button>
         </Stack>
