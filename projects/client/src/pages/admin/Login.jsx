@@ -120,6 +120,7 @@ export const LoginAdminPage = () => {
                     />
                     <Button
                       color={"black"}
+                      variant="unstyled"
                       onClick={() =>
                         setShowPassword((showPassword) => !showPassword)
                       }
