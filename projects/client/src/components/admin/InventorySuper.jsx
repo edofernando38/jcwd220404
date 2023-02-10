@@ -15,14 +15,12 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { transSync } from "../../redux/transactionSlice";
+import { syncInventory } from "../../redux/inventorySlice";
 
-export const SalesComp = () => {
-  // const [data, setData] = useState();
+export const InventorySuper = () => {
   const [data2, setData2] = useState();
   const [data3, setData3] = useState();
   const [data4, setData4] = useState();
@@ -31,7 +29,7 @@ export const SalesComp = () => {
   const [data7, setData7] = useState();
   const [limit2, setLimit2] = useState(5);
   const [sort2, setSort2] = useState("ASC");
-  const [order2, setOrder2] = useState("status");
+  const [order2, setOrder2] = useState("id");
   const [searchProduct, setSearchProduct] = useState("");
   const [state2, setState2] = useState(0);
   const [searchCategory2, setSearchCategory2] = useState("");
@@ -39,7 +37,7 @@ export const SalesComp = () => {
   const [totalPage2, setTotalPage2] = useState(0);
   const [limit3, setLimit3] = useState(5);
   const [sort3, setSort3] = useState("ASC");
-  const [order3, setOrder3] = useState("status");
+  const [order3, setOrder3] = useState("id");
   const [searchProduct3, setSearchProduct3] = useState("");
   const [state3, setState3] = useState(0);
   const [searchCategory3, setSearchCategory3] = useState("");
@@ -47,22 +45,22 @@ export const SalesComp = () => {
   const [totalPage3, setTotalPage3] = useState(0);
   const [limit4, setLimit4] = useState(5);
   const [sort4, setSort4] = useState("ASC");
-  const [order4, setOrder4] = useState("status");
+  const [order4, setOrder4] = useState("id");
   const [searchProduct4, setSearchProduct4] = useState("");
   const [state4, setState4] = useState(0);
   const [searchCategory4, setSearchCategory4] = useState("");
   const [page4, setPage4] = useState(1);
   const [totalPage4, setTotalPage4] = useState(0);
-  const data = useSelector((state) => state.transactionSlice.value);
+  const data = useSelector((state) => state.inventorySlice.value);
   const dispatch = useDispatch();
 
   const getData = async (id) => {
     try {
       const result = await Axios.get(
-        `${process.env.REACT_APP_API_BASE_URL}/transaction/salesDepok`
+        `${process.env.REACT_APP_API_BASE_URL}/inventory/invDepok`
       );
-      console.log(result.data[0]?.BranchId);
       setData5(result.data[0]?.BranchId);
+      console.log(result.data[0]?.BranchId);
     } catch (err) {
       console.log(err);
     }
@@ -75,9 +73,9 @@ export const SalesComp = () => {
   const getData2 = async (id) => {
     try {
       const result = await Axios.get(
-        `${process.env.REACT_APP_API_BASE_URL}/transaction/salesJaksel`
+        `${process.env.REACT_APP_API_BASE_URL}/inventory/invJaksel`
       );
-
+      setData3(result.data);
       setData6(result.data[0]?.BranchId);
     } catch (err) {
       console.log(err);
@@ -91,9 +89,9 @@ export const SalesComp = () => {
   const getData3 = async (id) => {
     try {
       const result = await Axios.get(
-        `${process.env.REACT_APP_API_BASE_URL}/transaction/salesJaktim`
+        `${process.env.REACT_APP_API_BASE_URL}/inventory/invJaktim`
       );
-
+      setData4(result.data);
       setData7(result.data[0]?.BranchId);
     } catch (err) {
       console.log(err);
@@ -104,19 +102,20 @@ export const SalesComp = () => {
     getData3();
   }, []);
 
-  const getTransDepok = async () => {
+  const getInvDepok = async () => {
     try {
       const res = await Axios.get(
         `${
           process.env.REACT_APP_API_BASE_URL
-        }/transaction/pagDepok?search_query=${searchCategory2}&page=${
+        }/inventory/pagDepok?search_query=${searchCategory2}&page=${
           page2 - 1
-        }&limit=${limit2}&order=${order2 ? order2 : `status`}&sort=${
+        }&limit=${limit2}&order=${order2 ? order2 : `id`}&sort=${
           sort2 ? sort2 : "ASC"
         }&BranchId=${data5}`
       );
-      dispatch(transSync(res.data.result));
+      dispatch(syncInventory(res.data.result));
       console.log(res.data.result);
+      getData()
       setTotalPage2(Math.ceil(res.data.totalRows / res.data.limit));
       setState2(res.data);
     } catch (err) {
@@ -125,7 +124,7 @@ export const SalesComp = () => {
   };
 
   useEffect(() => {
-    getTransDepok();
+    getInvDepok();
   }, [searchCategory2, page2, limit2, sort2, data5]);
 
   async function fetchSort2(filter) {
@@ -136,18 +135,18 @@ export const SalesComp = () => {
     fetchSort2();
   }, []);
 
-  const getTransJaksel = async () => {
+  const getInvJaksel = async () => {
     try {
       const res = await Axios.get(
         `${
           process.env.REACT_APP_API_BASE_URL
-        }/transaction/pagJaksel?search_query=${searchCategory3}&page=${
+        }/inventory/pagJaksel?search_query=${searchCategory3}&page=${
           page3 - 1
-        }&limit=${limit3}&order=${order3 ? order3 : `status`}&sort=${
+        }&limit=${limit3}&order=${order3 ? order3 : `id`}&sort=${
           sort3 ? sort3 : "ASC"
         }&BranchId=${data6}`
       );
-      dispatch(transSync(res.data.result));
+      dispatch(syncInventory(res.data.result));
       console.log(res.data.result);
       setTotalPage3(Math.ceil(res.data.totalRows / res.data.limit));
       setState3(res.data);
@@ -157,7 +156,7 @@ export const SalesComp = () => {
   };
 
   useEffect(() => {
-    getTransJaksel();
+    getInvJaksel();
   }, [searchCategory3, page3, limit3, sort3, data6]);
 
   async function fetchSort3(filter) {
@@ -168,18 +167,18 @@ export const SalesComp = () => {
     fetchSort3();
   }, []);
 
-  const getTransJaktim = async () => {
+  const getInvJaktim = async () => {
     try {
       const res = await Axios.get(
         `${
           process.env.REACT_APP_API_BASE_URL
-        }/transaction/pagJaktim?search_query=${searchCategory4}&page=${
+        }/inventory/pagJaktim?search_query=${searchCategory4}&page=${
           page4 - 1
-        }&limit=${limit4}&order=${order4 ? order4 : `status`}&sort=${
+        }&limit=${limit2}&order=${order4 ? order4 : `id`}&sort=${
           sort4 ? sort4 : "ASC"
         }&BranchId=${data7}`
       );
-      dispatch(transSync(res.data.result));
+      dispatch(syncInventory(res.data.result));
       console.log(res.data.result);
       setTotalPage4(Math.ceil(res.data.totalRows / res.data.limit));
       setState4(res.data);
@@ -189,7 +188,7 @@ export const SalesComp = () => {
   };
 
   useEffect(() => {
-    getTransJaktim();
+    getInvJaktim();
   }, [searchCategory4, page4, limit4, sort4, data7]);
 
   async function fetchSort4(filter) {
@@ -221,19 +220,19 @@ export const SalesComp = () => {
                 <Thead alignContent={"center"}>
                   <Tr>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Invoice
+                      No.Inventory
                     </Th>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Total Product
+                      Product ID
                     </Th>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Delivery Cost
+                      Initial Stock
                     </Th>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Weight
+                      Entry Date
                     </Th>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Status
+                      Initial Stock
                     </Th>
                   </Tr>
                 </Thead>
@@ -242,19 +241,19 @@ export const SalesComp = () => {
                     return (
                       <Tr>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.id_order}
+                          {item.id}
                         </Td>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.totalOrder}
+                          {item.ProductId}
                         </Td>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.totalCharge}
+                          {item.stockQty}
                         </Td>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.totalWeight}
+                          {item.entryDate}
                         </Td>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.status}
+                          {item.totalQty}
                         </Td>
                       </Tr>
                     );
@@ -321,19 +320,19 @@ export const SalesComp = () => {
                 <Thead alignContent={"center"}>
                   <Tr>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Invoice
+                      No.Inventory
                     </Th>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Total Product
+                      Product ID
                     </Th>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Delivery Cost
+                      Initial Stock
                     </Th>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Weight
+                      Entry Date
                     </Th>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Status
+                      Initial Stock
                     </Th>
                   </Tr>
                 </Thead>
@@ -342,19 +341,19 @@ export const SalesComp = () => {
                     return (
                       <Tr>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.id_order}
+                          {item.id}
                         </Td>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.totalOrder}
+                          {item.ProductId}
                         </Td>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.totalCharge}
+                          {item.stockQty}
                         </Td>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.totalWeight}
+                          {item.entryDate}
                         </Td>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.status}
+                          {item.totalQty}
                         </Td>
                       </Tr>
                     );
@@ -369,7 +368,7 @@ export const SalesComp = () => {
                     setPage3(page3 === 1 ? 1 : page3 - 1);
                   }
                   submit();
-                  var pageNow = page3 - 1;
+                  var pageNow = page3- 1;
                   pageNow = pageNow <= 0 ? 1 : pageNow;
                   document.getElementById("pagingInput").value =
                     parseInt(pageNow);
@@ -421,41 +420,40 @@ export const SalesComp = () => {
                 <Thead alignContent={"center"}>
                   <Tr>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Invoice
+                      No.Inventory
                     </Th>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Total Product
+                      Product ID
                     </Th>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Delivery Cost
+                      Initial Stock
                     </Th>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Weight
+                      Entry Date
                     </Th>
                     <Th textAlign={"center"} color={"#285430"}>
-                      Status
+                      Initial Stock
                     </Th>
                   </Tr>
                 </Thead>
-
                 <Tbody>
                   {data?.map((item) => {
                     return (
                       <Tr>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.id_order}
+                          {item.id}
                         </Td>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.totalOrder}
+                          {item.ProductId}
                         </Td>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.totalCharge}
+                          {item.stockQty}
                         </Td>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.totalWeight}
+                          {item.entryDate}
                         </Td>
                         <Td textAlign={"center"} color={"#285430"}>
-                          {item.status}
+                          {item.totalQty}
                         </Td>
                       </Tr>
                     );
