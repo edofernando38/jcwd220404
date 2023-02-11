@@ -6,7 +6,7 @@ import { CarouselComp } from "../../components/user/Carousel";
 import { MenuComp } from "../../components/user/Menu";
 import { DefaultAddress } from "../../components/user/DefaultAddress";
 import { BlankAddress } from "../../components/user/BlankAddress";
-// import { SearchComp } from "../../components/user/Search";
+import { SearchComp } from "../../components/user/Search";
 
 export const LandingPage = () => {
   const tokenLocalStorage = localStorage.getItem("tokenUser");
@@ -30,6 +30,7 @@ export const LandingPage = () => {
                 zIndex="2"
               >
                 <LogoComp />
+                  <SearchComp />
                 <NotificationComp />
               </Box>
             </Skeleton>
@@ -38,7 +39,6 @@ export const LandingPage = () => {
                 <VStack>
             {tokenLocalStorage ? <DefaultAddress /> : <BlankAddress />}
                   <CarouselComp />
-                  {/* <SearchComp /> */}
                   <MenuComp />
                 </VStack>
               </Box>
